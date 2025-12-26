@@ -4,7 +4,7 @@
 ## 10. Implementation of programs using pointer arithmetic.
 # Ex.No:21
   Implement a C program to demonstrate call by value and call by reference by swapping two integers using separate functions.
-# Date : 
+# Date : 11.12.25
 # Aim:
  To implement a C program that illustrates the difference between call by value and call by reference by swapping two integer variables using two separate functions.
 # Algorithm:
@@ -39,7 +39,49 @@
 ### Step 12: 
   Stop
 # Program:
+```
+#include <stdio.h>
+
+/* Function using Call by Value */
+void swapByValue(int a, int b)
+{
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+    printf("Inside swapByValue: a = %d, b = %d\n", a, b);
+}
+
+/* Function using Call by Reference */
+void swapByReference(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    printf("Inside swapByReference: a = %d, b = %d\n", *a, *b);
+}
+
+int main()
+{
+    int x, y;
+
+    printf("Enter two integers:\n");
+    scanf("%d %d", &x, &y);
+
+    printf("\nBefore swapByValue: x = %d, y = %d\n", x, y);
+    swapByValue(x, y);
+    printf("After swapByValue: x = %d, y = %d\n", x, y);
+
+    printf("\nBefore swapByReference: x = %d, y = %d\n", x, y);
+    swapByReference(&x, &y);
+    printf("After swapByReference: x = %d, y = %d\n", x, y);
+
+    return 0;
+}
+```
 # Output:
+![alt text](c21.png)
 # Result: 
   Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -48,7 +90,7 @@
 # IAPR-5- Module 5 - FoC
 # Ex.No:22
   Implement a C program to generate the Fibonacci series using a recursive function. The program should accept a positive integer n and display the first n terms of the Fibonacci sequence.
-# Date : 
+# Date : 11.12.25
 # Aim:
   To implement a C program that uses a recursive function to generate and display the Fibonacci series for a given number of terms.
 # Algorithm:
@@ -77,7 +119,38 @@
 ### Step 10:
   Stop
 # Program:
+```
+#include <stdio.h>
+
+/* Recursive function to find Fibonacci term */
+int fibonacci(int n)
+{
+    if (n == 0)
+        return 0;
+    else if (n == 1)
+        return 1;
+    else
+        return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main()
+{
+    int n, i;
+
+    printf("Enter the number of terms: ");
+    scanf("%d", &n);
+
+    printf("Fibonacci series:\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", fibonacci(i));
+    }
+
+    return 0;
+}
+```
 # Output:
+![alt text](c22.png)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -86,7 +159,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-5- Module 5 - FoC
 # Ex.No:23
    Implement a C program to demonstrate recursion by printing a sequence of even or odd numbers from a given lower limit to an upper limit, with each recursive call progressing by 2.
-# Date : 
+# Date : 11.12.25
 # Aim:
   To implement a C program that uses a recursive function to print even or odd numbers in a specified range based on the starting value provided by the user.
 # Algorithm:
@@ -119,7 +192,44 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 12:
   Stop
 # Program:
+```
+#include <stdio.h>
+
+/* Recursive function to print even or odd numbers */
+void printSeries(int current, int upper)
+{
+    if (current > upper)
+        return;
+
+    printf("%d ", current);
+    printSeries(current + 2, upper);
+}
+
+int main()
+{
+    int lower, upper;
+
+    printf("Enter lower limit: ");
+    scanf("%d", &lower);
+
+    printf("Enter upper limit: ");
+    scanf("%d", &upper);
+
+    /* Adjust lower limit to maintain even/odd sequence */
+    if (lower % 2 != 0 && lower + 1 <= upper)
+        ;  // odd start remains odd
+    else if (lower % 2 == 0 && lower + 1 <= upper)
+        ;  // even start remains even
+
+    printf("Number series:\n");
+    printSeries(lower, upper);
+
+    return 0;
+}
+```
 # Output:
+![alt text](c23.png)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -128,7 +238,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-5- Module 5 - FoC
 # Ex.No:24
    Implement a C program that dynamically allocates memory using calloc(), accepts integer inputs from the user, computes their sum, and prints the sum.
-# Date : 
+# Date : 11.12.25
 # Aim:
   To implement a C program that dynamically allocates memory for an array of integers using calloc(), accepts elements from the user, computes their sum, and displays the sum.
 # Algorithm:
@@ -161,7 +271,45 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11:
   Stop
 # Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int *arr, n, i, sum = 0;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    /* Dynamic memory allocation using calloc */
+    arr = (int *)calloc(n, sizeof(int));
+
+    /* Check if memory allocation was successful */
+    if (arr == NULL)
+    {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+
+    printf("Sum of elements = %d\n", sum);
+
+    /* Free allocated memory */
+    free(arr);
+
+    return 0;
+}
+```
 # Output:
+![alt text](c24.png)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -170,7 +318,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-5- Module 5 - FoC
 # Ex.No:25
    Implement a C program that reads a set of integers into an array and displays the array elements using a user-defined function.
-# Date : 
+# Date : 11.12.25
 # Aim:
   To implement a C program that reads integers into an array and displays the elements using a user-defined function.
 # Algorithm:
@@ -197,6 +345,40 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
-# Output:
+```
+#include <stdio.h>
+
+/* User-defined function to display array elements */
+void displayArray(int arr[], int n)
+{
+    int i;
+    printf("Array elements are:\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+}
+
+int main()
+{
+    int arr[100], n, i;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    displayArray(arr, n);
+
+    return 0;
+}
+```
+# OUTPUT:
+![alt text](c25.png) Output:
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
